@@ -1,7 +1,7 @@
 import { toast } from "@zerodevx/svelte-toast";
 
-export const toastSuccess = (m) =>
-  toast.push(m, {
+export const toastSuccess = (msg: string) =>
+  toast.push(msg, {
     theme: {
       "--toastBackground": "green",
       "--toastColor": "white",
@@ -11,8 +11,8 @@ export const toastSuccess = (m) =>
     duration: 1500,
   });
 
-export const toastError = (m) => {
-  toast.push(m, {
+export const toastError = (msg: string) => {
+  toast.push(msg, {
     theme: {
       "--toastBackground": "red",
       "--toastColor": "white",
@@ -23,8 +23,8 @@ export const toastError = (m) => {
   });
 };
 
-export const toastWarning = (m) => {
-  toast.push(m, {
+export const toastWarning = (msg: string) => {
+  toast.push(msg, {
     theme: {
       "--toastBackground": "orange",
       "--toastColor": "white",

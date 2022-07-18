@@ -3,7 +3,7 @@ import { emailStore } from "../stores/generic";
 import { toast } from "@zerodevx/svelte-toast";
 import { toastError, toastSuccess } from "./toast-themes";
 import process from "svelte-environment-variables";
-import { array, bool, string } from "yup";
+import { array, bool, boolean, string } from "yup";
 import { throwError } from "svelte-preprocess/dist/modules/errors";
 
 /**
@@ -33,7 +33,7 @@ interface APIResult {
 }
 
 interface APIAttrs {
-  [key: string]: string;
+  [key: string]: string | boolean;
 }
 
 interface AuthenticationParameters {

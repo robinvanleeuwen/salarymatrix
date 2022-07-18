@@ -18,9 +18,9 @@
   import type { GenericObject } from "../helpers/layout";
   import CUDBar from "../components/CUDBar.svelte";
 
-  const endpoint: string = "admin";
-  const titleSingle: string = "Admin";
-  const titlePlural: string = "Admins";
+  const endpoint: string = "company";
+  const titleSingle: string = "Company";
+  const titlePlural: string = "Companies";
 
   let openButtonMode: string = "Add";
 
@@ -60,12 +60,12 @@
   };
 
   async function getOptions() {
-    formDefinition = await updateFormDefinitionOptions(
-      "locale",
-      "localeUid",
-      {},
-      formDefinition
-    );
+    // formDefinition = await updateFormDefinitionOptions(
+    //   "locale",
+    //   "localeUid",
+    //   {},
+    //   formDefinition
+    // );
   }
 
   onMount(async () => {

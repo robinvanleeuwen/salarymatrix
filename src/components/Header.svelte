@@ -2,9 +2,9 @@
   import process from "svelte-environment-variables";
   import DMButton from "./DMButton.svelte";
 
-  export let dialogOpen = undefined;
-  export let headerClasses = "pl-3";
-  export let diagnose = () => {
+  export let dialogOpen: boolean = undefined;
+  export let headerClasses: string = "pl-3";
+  export let diagnose = (): null => {
     console.log("---- DIAGNOSIS --- NOT --- IMPLEMENTED ---");
   };
 </script>

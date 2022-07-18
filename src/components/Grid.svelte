@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import "ag-grid-community/dist/styles/ag-grid.css";
   import "ag-grid-community/dist/styles/ag-theme-alpine.css";
   import { Grid } from "ag-grid-community";
@@ -41,7 +41,6 @@
     pagination: true,
     paginationPageSize: 15,
     rowSelection: "single",
-    suppressCellFocus: true,
     ...extraOptions,
   };
 

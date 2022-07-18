@@ -5,12 +5,12 @@
   import { menuOpen } from "../../stores/generic";
   import {
     bars,
-    bell,
     flag,
     money,
     questionCircle,
     table,
     users,
+    building,
   } from "svelte-awesome/icons";
 
   const toggleMenu = () => {
@@ -41,48 +41,41 @@
     />
     <MenuItem
       size="sm"
-      icon={bell}
-      href="#/auctions"
+      icon={building}
+      href="#/company"
       on:click={toggleMenu}
-      title="Auctions"
+      title="Companies"
     />
-    <MenuItem
-      size="sm"
-      icon={table}
-      href="#/categories"
-      on:click={toggleMenu}
-      title="Catergories"
-    />
+    <h4 class="font-bold text-black mt-3">Company Data</h4>
     <MenuItem
       size="sm"
       icon={users}
-      href="#/clients"
+      href="#/employees"
       on:click={toggleMenu}
-      title="Clients"
-    />
-    <MenuItem
-      size="sm"
-      icon={flag}
-      href="#/locales"
-      on:click={toggleMenu}
-      title="Locales"
+      title="Employees"
     />
 
-    <h4 class="font-bold text-black mt-3">Lots</h4>
     <MenuItem
       size="sm"
       icon={bars}
-      href="#/lots"
+      href="#/schedules"
       on:click={toggleMenu}
-      title="Manage Lots"
+      title="Schedules"
     />
-    <h4 class="font-bold mt-3">Taxations</h4>
     <MenuItem
       size="sm"
-      icon={money}
-      href="#/taxations"
+      icon={bars}
+      href="#/tags"
       on:click={toggleMenu}
-      title="Manage Taxations"
+      title="Tags"
+    />
+    <h4 class="font-bold mt-3">Registration</h4>
+    <MenuItem
+      size="sm"
+      icon={table}
+      href="#/presence"
+      on:click={toggleMenu}
+      title="Manage Presence"
     />
     <h4 class="font-bold mt-3">Misc</h4>
     <MenuItem
@@ -98,6 +91,16 @@
       href="#/playground"
       on:click={toggleMenu}
       title="Playground"
+    />
+
+    <h4 class="font-bold mt-3">System Data</h4>
+
+    <MenuItem
+      size="sm"
+      icon={flag}
+      href="#/locales"
+      on:click={toggleMenu}
+      title="Locales"
     />
   </nav>
 </aside>

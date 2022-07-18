@@ -45,7 +45,7 @@
 
   /******************************************************************************/
 
-  let clearFormAfterSubmit = true;
+  let clearFormAfterSubmit = false;
 
   let validationObject = null;
   let schema = {};

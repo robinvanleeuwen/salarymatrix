@@ -1,5 +1,6 @@
-import { writable } from "svelte/store";
+import {  writable } from "svelte/store";
 import type { FormDefinition } from "../helpers/layout";
+import type { Writable} from "svelte/store";
 
 export function createValueStore(components) {
   let initialStore = {};
@@ -17,15 +18,13 @@ export function createValueStore(components) {
  * marked needed in the backend SQL model which is propagated to the
  * generateForm() --> formComponents array.
  */
-export const clearValueStore = (valueStore, formDefinition: FormDefinition) => {
+export const clearValueStore = (valueStore: Writable<any>, formDefinition: FormDefinition) => {
   if (!formDefinition || !valueStore) {
     !formDefinition ? console.warn("No formDefinition given!") : "";
     !valueStore ? console.warn("ValueStore is not given!") : "";
     console.error("Did not get needed parameters to clear the value store...");
     return;
   }
-
-  console.log(formDefinition);
 
   let newState = {};
   formDefinition.components.forEach((c) => {
