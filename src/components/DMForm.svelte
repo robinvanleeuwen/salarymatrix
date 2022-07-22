@@ -118,7 +118,7 @@
       const result = await getJsonRpc(endpoint, method, params, "dict", true);
       if (result["code"] === "OK") {
       }
-      $: rowData = await refreshRowData();
+      rowData = await refreshRowData();
     } else {
       validationObject
         .validate(params, { abortEarly: false })

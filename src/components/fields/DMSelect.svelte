@@ -39,13 +39,13 @@
 </script>
 
 <div class={cls}>
-  <span class="text-sm ml-0.5 mb-0.5">{attributes.label}</span>
-  <div class="flex">
-    <select
-      id={attributes.name}
-      name={attributes.name}
-      {disabled}
-      class="
+  <div class="flex-column text-sm ml-0.5 mb-0.5 w-[100%]">{attributes.label}</div>
+  <div class="w-[100%]">
+  <select
+    id={attributes.name}
+    name={attributes.name}
+    {disabled}
+    class="
     form-select
     form-select-sm
     appearance-none
@@ -60,33 +60,34 @@
     rounded
     transition
     ease-in-out
+    w-[100%]
     m-0
     focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-      bind:value
-      on:change={onchange}
-    >
-      {#if attributes.options !== undefined}
-        {#each attributes.options as option}
-          <option value={option.value}>{option.label}</option>
-        {/each}
-      {/if}
-    </select>
-    {#if attributes.quick_grid ? attributes.quick_grid.length > 0 : false}
-      <DMButton
-        {disabled}
-        cls="ml-2"
-        id="dialog-{attributes.name}"
-        color="bg-blue-300"
-        type="button"
-        onClick={() => {
-          console.log("Click");
-          showOptionsDialog = attributes.sourceModel;
-        }}>Add</DMButton
-      >
-    {:else}
-      <div />
+    bind:value
+    on:change={onchange}
+  >
+    {#if attributes.options !== undefined}
+      {#each attributes.options as option}
+        <option value={option.value}>{option.label}</option>
+      {/each}
     {/if}
+  </select>
   </div>
+  {#if attributes.quick_grid ? attributes.quick_grid.length > 0 : false}
+  <DMButton
+    {disabled}
+    cls="ml-2"
+    id="dialog-{attributes.name}"
+    color="bg-blue-300"
+    type="button"
+    onClick={() => {
+      console.log("Click");
+      showOptionsDialog = attributes.sourceModel;
+      }}>Add</DMButton
+  >
+  {:else}
+    <div />
+  {/if}
 </div>
 
 <style>

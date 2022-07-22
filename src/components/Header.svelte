@@ -12,6 +12,9 @@
 <div class="text-2xl font-bold {headerClasses}">
   <div class="flex justify-content-between w-[100%] mr-2">
     <div class="float-start">
+      {#if dialogOpen}
+        <div class="float-end"><DMButton onClick={() => {dialogOpen = false;}}>Close</DMButton></div>
+      {/if}
       <div class="float-end"><slot /></div>
     </div>
   </div>

@@ -16,9 +16,10 @@
   import type { SelectOption, GenericObject } from "../helpers/layout";
   import type { Writable } from "svelte/store";
   import DMSelect from "../components/fields/DMSelect.svelte";
-  const endpoint: string = "employee";
-  const titleSingle: string = "Employee";
-  const titlePlural: string = "Employees";
+
+  const endpoint: string = "event";
+  const titleSingle: string = "Event";
+  const titlePlural: string = "Events";
 
   let method: string = "create";
   let formDefinition: FormDefinition;
@@ -34,7 +35,7 @@
     return await updateRowData(
       endpoint,
       "get_all",
-      { },
+      { company_uid:  $valueStore["companyUid"]  },
       "dict",
       false
     );
@@ -55,7 +56,8 @@
   };
 
   const selectedCompanyChanged = async (e) => {
-    console.log(e.target.value)
+    clearValueStore(valueStore, formDefinition);
+
     $valueStore["companyUid"] = e.target.value;
 
     // If there are any option-arrays for select-boxes
@@ -70,7 +72,7 @@
     formDefinition = await generateFormDefinition(endpoint);
     valueStore = createValueStore(formDefinition.components);
     rowData = await refreshRowData();
-    $valueStore["companyUid"] = $selectedCompanyUid;
+    $valueStore["company_uid"] = $selectedCompanyUid;
   });
 
   $: {
@@ -84,9 +86,15 @@
 
 <Content>
   <Header>{titlePlural}</Header>
-  <div class="grid grid-cols-[65%_35%] pt-4 mr-4">
+  <div class="grid grid-cols-2 pt-4 mr-4">
     <div>
-      <div />
+      <div class="flex ml-3 mb-2 w-[100%]">
+        <DMSelect
+          onchange={(e) => selectedCompanyChanged(e)}
+          attributes={{ label: "Company", options: companies }}
+          bind:value={$selectedCompanyUid}
+        />
+      </div>
       <div class="ml-3 shadow">
         <Grid
           {endpoint}
@@ -97,7 +105,7 @@
         />
       </div>
     </div>
-    <div class="">
+    <div class="mt-[53px]">
       {#if formDefinition}
         <DMForm
           containerClasses="border border-gray-400 p-2 ml-4 shadow-xl"

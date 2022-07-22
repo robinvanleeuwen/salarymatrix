@@ -1,10 +1,8 @@
 <script lang="ts">
   import Header from "../components/Header.svelte";
   import { onMount } from "svelte";
-  import { getSelectOptions } from "../helpers/api";
   import Content from "../components/Content.svelte";
   import { updateRowData } from "../helpers/grid";
-  import { selectedCompanyUid } from "../stores/generic";
   import DMForm from "../components/DMForm.svelte";
   import { writable } from "svelte/store";
   import Grid from "../components/Grid.svelte";
@@ -13,21 +11,19 @@
   import { FormDefinition, generateFormDefinition } from "../helpers/layout";
   import { GridApi } from "ag-grid-community";
 
-  import type { SelectOption, GenericObject } from "../helpers/layout";
+  import type { GenericObject } from "../helpers/layout";
   import type { Writable } from "svelte/store";
-  import DMSelect from "../components/fields/DMSelect.svelte";
-  const endpoint: string = "employee";
-  const titleSingle: string = "Employee";
-  const titlePlural: string = "Employees";
+  const endpoint: string = "time_registration";
+  const titleSingle: string = "Time Registration";
+  const titlePlural: string = "Time Registration";
 
   let method: string = "create";
   let formDefinition: FormDefinition;
-  let companies: Array<SelectOption> = [];
   let rowData: Array<GenericObject> = [];
   let valueStore: Writable<GenericObject> = writable({ _meta: {} });
 
-  let canCreate: boolean = false;
-  let canUpdateOrDelete: boolean;
+  let canCreate: boolean = true;
+  let canUpdateOrDelete: boolean = false;
   let gridApi: GridApi = null;
 
   const refreshRowData = async (): Promise<Array<GenericObject>> => {
@@ -36,7 +32,7 @@
       "get_all",
       { },
       "dict",
-      false
+      true
     );
   };
 
@@ -44,48 +40,32 @@
     clearValueStore(valueStore, formDefinition);
 
     if (gridApi.getSelectedNodes().length === 1) {
+      canCreate = false;
+      canUpdateOrDelete = true;
       $valueStore = {
         ...$valueStore,
         ...rows.detail[0],
       };
     } else if (gridApi.getSelectedNodes().length === 0) {
+      canCreate = true;
+      canUpdateOrDelete = false;
       $valueStore = { ...$valueStore };
     }
-    canCreate = gridApi?.getSelectedNodes().length === 0;
-  };
-
-  const selectedCompanyChanged = async (e) => {
-    console.log(e.target.value)
-    $valueStore["companyUid"] = e.target.value;
-
-    // If there are any option-arrays for select-boxes
-    // that should be synced with the new company, this
-    // is the place to do that.
-
-    rowData = await refreshRowData();
   };
 
   onMount(async () => {
-    companies = await getSelectOptions("company");
     formDefinition = await generateFormDefinition(endpoint);
     valueStore = createValueStore(formDefinition.components);
     rowData = await refreshRowData();
-    $valueStore["companyUid"] = $selectedCompanyUid;
   });
 
-  $: {
-    if (gridApi?.getSelectedNodes().length === 0) {
-      canCreate = true;
-    }
-  }
-  $: canUpdateOrDelete = !canCreate;
-  $: $valueStore["companyUid"] = $selectedCompanyUid;
 </script>
 
 <Content>
   <Header>{titlePlural}</Header>
-  <div class="grid grid-cols-[65%_35%] pt-4 mr-4">
+  <div class="grid grid-cols-2 pt-4 mr-4">
     <div>
+
       <div />
       <div class="ml-3 shadow">
         <Grid
@@ -100,8 +80,8 @@
     <div class="">
       {#if formDefinition}
         <DMForm
-          containerClasses="border border-gray-400 p-2 ml-4 shadow-xl"
-          headerClasses="ml-1 mb-2"
+          containerClasses="border-[1px] border-slate-400 p-2 ml-4 shadow-xl"
+          headerClasses="ml-1 mb-2 bg-gray-100"
           headerTitle={titleSingle}
           {formDefinition}
           {refreshRowData}

@@ -6,7 +6,8 @@
   import {
     bars,
     flag,
-    money,
+    music,
+    tag,
     questionCircle,
     table,
     users,
@@ -46,13 +47,28 @@
       on:click={toggleMenu}
       title="Companies"
     />
-    <h4 class="font-bold text-black mt-3">Company Data</h4>
     <MenuItem
       size="sm"
       icon={users}
       href="#/employees"
       on:click={toggleMenu}
       title="Employees"
+    />
+    <MenuItem
+      size="sm"
+      icon={tag}
+      href="#/tags"
+      on:click={toggleMenu}
+      title="Tags"
+    />
+    <h4 class="font-bold text-black mt-3">Company Data</h4>
+
+    <MenuItem
+      size="sm"
+      icon={music}
+      href="#/events"
+      on:click={toggleMenu}
+      title="Events"
     />
 
     <MenuItem
@@ -62,20 +78,14 @@
       on:click={toggleMenu}
       title="Schedules"
     />
-    <MenuItem
-      size="sm"
-      icon={bars}
-      href="#/tags"
-      on:click={toggleMenu}
-      title="Tags"
-    />
+
     <h4 class="font-bold mt-3">Registration</h4>
     <MenuItem
       size="sm"
       icon={table}
-      href="#/presence"
+      href="#/timeRegistration"
       on:click={toggleMenu}
-      title="Manage Presence"
+      title="Time Registration"
     />
     <h4 class="font-bold mt-3">Misc</h4>
     <MenuItem

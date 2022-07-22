@@ -5,6 +5,8 @@ import Locales from "./pages/Locales.svelte";
 import Schedules from "./pages/Schedules.svelte";
 import Employees from "./pages/Employees.svelte";
 import Tags from "./pages/Tags.svelte";
+import TimeRegistration from "./pages/TimeRegistration.svelte";
+import Events from "./pages/Events.svelte";
 
 export const routes = {
   "/": Home,
@@ -14,4 +16,6 @@ export const routes = {
   "/schedules": Schedules,
   "/employees": Employees,
   "/tags": Tags,
+  "/events": Events,
+  "/timeRegistration": TimeRegistration,
 };

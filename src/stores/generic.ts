@@ -10,7 +10,7 @@ interface ISelectOptionParameter {
 
 export const menuOpen: Writable<boolean> = writable(true);
 export const emailStore: Writable<string> = writable("banaan");
-export const selectedClientUid: Writable<string> = writable("");
+export const selectedCompanyUid: Writable<string> = writable("");
 export const currentEndpoint: Writable<string> = writable("");
 
 export const recordStore = {};
