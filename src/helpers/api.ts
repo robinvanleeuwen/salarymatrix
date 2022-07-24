@@ -49,19 +49,25 @@ interface JSONRPCBody {
 }
 
 let apiUrl: string = "";
+let socketUrl: string = "";
 switch (process.env.SVELTE_APP_ENVIRONMENT) {
   case "production": {
     apiUrl = process.env.SVELTE_APP_API_URL_PRODUCTION;
+    socketUrl = process.env.SVELTE_APP_SOCKET_URL_PRODUCTION;
     break;
   }
   case "development": {
     apiUrl = process.env.SVELTE_APP_API_URL_DEVELOPMENT;
+    socketUrl = process.env.SVELTE_APP_SOCKET_URL_DEVELOPMENT;
     break;
   }
   default: {
     apiUrl = "https://NO-VALID-ENVIRONMENT.LOCAL";
+    socketUrl = "https://NO-VALID-ENVIRONMENT.LOCAL";
   }
 }
+
+export { socketUrl };
 
 export async function getJsonRpc(
   endpoint: string,

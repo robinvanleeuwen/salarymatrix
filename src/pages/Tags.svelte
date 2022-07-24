@@ -4,7 +4,7 @@
   import Grid from "../components/Grid.svelte";
   import Sidebar from "../components/sidebar/Sidebar.svelte";
   import DMForm from "../components/DMForm.svelte";
-  import SidebarCloseButton from "../components/sidebar/SidebarCloseButton.svelte";
+  import process from "svelte-environment-variables";
   import SidebarOpenButton from "../components/sidebar/SidebarOpenButton.svelte";
   import { FormDefinition, generateFormDefinition } from "../helpers/layout";
   import { updateRowData } from "../helpers/grid";
@@ -18,6 +18,7 @@
   import type { GenericObject } from "../helpers/layout";
   import CUDBar from "../components/CUDBar.svelte";
   import { io } from "socket.io-client";
+  import { socketUrl } from "../helpers/api";
 
   const endpoint: string = "tag";
   const titleSingle: string = "Tag";
@@ -39,7 +40,8 @@
     return await updateRowData(endpoint, "get_all", {}, "dict", false);
   };
 
-  const socket = new io("http://192.168.33.38:6005/ws/salary/v1/tag");
+
+  const socket = new io(socketUrl+"tag");
 
   socket.on("tag_active_status", (message: any) => {
     $: rowData = rowData.map((item) => {
