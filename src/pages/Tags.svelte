@@ -41,7 +41,9 @@
   };
 
 
-  const socket = new io(socketUrl+"tag");
+  const socket = new io(socketUrl+"tag", {
+    transports: ["websocket", "polling"]
+  });
 
   socket.on("tag_active_status", (message: any) => {
     $: rowData = rowData.map((item) => {
