@@ -61,6 +61,11 @@ switch (process.env.SVELTE_APP_ENVIRONMENT) {
     socketUrl = process.env.SVELTE_APP_SOCKET_URL_DEVELOPMENT;
     break;
   }
+  case "cloud": {
+    apiUrl = process.env.SVELTE_APP_API_URL_CLOUD;
+    socketUrl = process.env.SVELTE_APP_SOCKET_URL_CLOUD;
+    break;
+  }
   default: {
     apiUrl = "https://NO-VALID-ENVIRONMENT.LOCAL";
     socketUrl = "https://NO-VALID-ENVIRONMENT.LOCAL";
