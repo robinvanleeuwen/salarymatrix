@@ -46,7 +46,7 @@
   socket.on("tag_active_status", (message: any) => {
     $: rowData = rowData.map((item) => {
       if(item.code === message.code) {
-        item.isActive = message.isActive.toString();
+        item.status = message.status.toString();
       }
       return item;
     })
